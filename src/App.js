@@ -1,6 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import robotsData from './data/robots.json';
+
+// Normalize messy application values from CSV into clean filter buckets
+const normalizeApplication = (raw) => {
+  if (!raw) return 'Other';
+  const lower = raw.toLowerCase();
+  if (lower.includes('spot') && lower.includes('arc')) return 'Arc & Spot Welding';
+  if (lower.includes('spot') && lower.includes('heavy')) return 'Spot & Heavy Welding';
+  if (lower.includes('spot')) return 'Spot Welding';
+  if (lower.includes('heavy')) return 'Heavy Welding';
+  if (lower.includes('arc')) return 'Arc Welding';
+  return raw.trim();
+};
 
 const CustomDropdown = ({ label, options, value, onChange, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,12 +72,18 @@ const RobotModal = ({ robot, onClose }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>&times;</button>
-        
+
         <div className="modal-header">
-          <div className="modal-category">{robot.category}</div>
+          <div className="modal-operation">{robot.operation}</div>
           <h2 className="modal-title">{robot.model}</h2>
           <div className="modal-company">{robot.company}</div>
         </div>
+
+        {robot.image_file && (
+          <div className="modal-image-container">
+            <img src={`/robot_images/${robot.image_file}`} alt={robot.model} className="modal-image" />
+          </div>
+        )}
 
         <div className="modal-body">
           <div className="modal-main-spec">
@@ -86,23 +103,25 @@ const RobotModal = ({ robot, onClose }) => {
               <span className="detail-value">{robot.axes}</span>
             </div>
             <div className="detail-item">
-              <span className="detail-label">Precision / Accuracy</span>
+              <span className="detail-label">Repeatability</span>
               <span className="detail-value">{robot.accuracy}</span>
             </div>
             <div className="detail-item">
-              <span className="detail-label">Typical Use Case</span>
-              <span className="detail-value">{robot.useCase}</span>
+              <span className="detail-label">Application</span>
+              <span className="detail-value">{robot.rawApplication}</span>
             </div>
             <div className="detail-item">
-              <span className="detail-label">Estimated Cost</span>
+              <span className="detail-label">Price (INR)</span>
               <span className="detail-value highlight">{robot.cost}</span>
             </div>
           </div>
 
-          <div className="modal-notes-section">
-            <h4 className="notes-heading">Technical Notes & Features</h4>
-            <p className="modal-notes">{robot.notes || "No additional technical documentation available for this model."}</p>
-          </div>
+          {robot.notes && (
+            <div className="modal-notes-section">
+              <h4 className="notes-heading">Technical Notes & Features</h4>
+              <p className="modal-notes">{robot.notes}</p>
+            </div>
+          )}
         </div>
 
         <div className="modal-footer">
@@ -117,8 +136,13 @@ const RobotModal = ({ robot, onClose }) => {
 const RobotCard = ({ robot, onClick }) => {
   return (
     <div className="robot-card" onClick={onClick}>
+      {robot.image_file && (
+        <div className="card-image-container">
+          <img src={`/robot_images/${robot.image_file}`} alt={robot.model} className="card-image" />
+        </div>
+      )}
       <div className="card-top">
-        <div className="card-category" data-category={robot.category}>{robot.category}</div>
+        <div className="card-operation" data-operation={robot.operation}>{robot.operation}</div>
         <div className="company-badge">{robot.company}</div>
       </div>
       <h3 className="card-title">{robot.model}</h3>
@@ -131,6 +155,14 @@ const RobotCard = ({ robot, onClick }) => {
         <div className="stat-item">
           <span className="stat-label">Reach</span>
           <span className="stat-value">{robot.reach} mm</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">Axes</span>
+          <span className="stat-value">{robot.axes}</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">Repeatability</span>
+          <span className="stat-value">{robot.accuracy}</span>
         </div>
       </div>
 
@@ -145,82 +177,124 @@ const RobotCard = ({ robot, onClick }) => {
 function App() {
   const [robots, setRobots] = useState([]);
   const [filteredRobots, setFilteredRobots] = useState([]);
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeOperation, setActiveOperation] = useState('All');
   const [activeCompany, setActiveCompany] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('None');
   const [selectedRobot, setSelectedRobot] = useState(null);
 
-  const categories = ['All', ...new Set(robots.map(r => r.category).filter(Boolean))];
-  const companies = ['All', ...new Set(robots.map(r => r.company).filter(Boolean))];
+  // Build filter lists from actual data
+  const operations = ['All', ...Array.from(new Set(robots.map(r => r.operation).filter(Boolean))).sort()];
+  const companies = ['All', ...Array.from(new Set(robots.map(r => r.company).filter(Boolean))).sort()];
 
   const parsePayload = (payload) => {
     if (typeof payload === 'number') return payload;
     if (!payload) return 0;
-    // Handle strings like "6–10", "up to 3100", "7-12"
     const match = payload.toString().match(/\d+/);
     return match ? parseInt(match[0]) : 0;
   };
 
   const parseCost = (cost) => {
     if (!cost) return 0;
-    const str = cost.toString().toLowerCase();
+    const str = cost.toString().replace(/[₹,\s]/g, '').toLowerCase();
     const match = str.match(/[\d.]+/);
     if (!match) return 0;
     let val = parseFloat(match[0]);
-    if (str.includes('cr')) val *= 100; // Convert Cr to Lakhs for comparison
+    if (str.includes('cr')) val *= 100;
     return val;
   };
 
   useEffect(() => {
-    const normalizedData = robotsData.map(r => {
-      let category = r.category || 'Other';
-      // Normalize common category name variations
-      if (category.toLowerCase().includes('welding')) category = 'Welding';
-      if (category.toLowerCase().includes('palletizing')) category = 'Palletizing';
-      if (category.toLowerCase().includes('painting')) category = 'Painting';
-      if (category.toLowerCase().includes('deburring')) category = 'Deburring';
+    const parseCSV = (text) => {
+      const result = [];
+      let row = [];
+      let inQuotes = false;
+      let val = '';
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+        if (char === '"' && inQuotes && nextChar === '"') {
+          val += '"';
+          i++;
+        } else if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          row.push(val);
+          val = '';
+        } else if (char === '\n' && !inQuotes) {
+          row.push(val);
+          result.push(row);
+          row = [];
+          val = '';
+        } else if (char === '\r' && !inQuotes) {
+          // ignore CR
+        } else {
+          val += char;
+        }
+      }
+      if (val || row.length > 0) {
+        row.push(val);
+        result.push(row);
+      }
 
-      return {
-        ...r,
-        category: category,
-        company: r.company ? r.company.trim() : 'Unknown'
-      };
-    });
-    setRobots(normalizedData);
-    setFilteredRobots(normalizedData);
+      if (result.length === 0) return [];
+      const headers = result[0].map(h => h.trim());
+      const data = [];
+      for (let i = 1; i < result.length; i++) {
+        const obj = {};
+        for (let j = 0; j < headers.length; j++) {
+          obj[headers[j]] = result[i] ? (result[i][j] || '').trim() : '';
+        }
+        if (obj.model) data.push(obj);
+      }
+      return data;
+    };
+
+    fetch('/robots_complete.csv')
+      .then(response => response.text())
+      .then(csvText => {
+        const parsedData = parseCSV(csvText);
+        const mappedData = parsedData.map(r => ({
+          company: r.company || '',
+          model: r.model || '',
+          // Store the raw application string for display in modal
+          rawApplication: r.application || '',
+          // Normalized operation for filtering
+          operation: normalizeApplication(r.application),
+          payload: r.payload_kg || '—',
+          reach: r.reach_mm || '—',
+          axes: r.axes || '—',
+          accuracy: r.repeatability || '—',
+          cost: r.price_inr || 'Contact for price',
+          notes: r.notes || '',
+          image_file: r.image_file || '',
+          useCase: r.application || ''
+        }));
+        setRobots(mappedData);
+        setFilteredRobots(mappedData);
+      })
+      .catch(err => console.error('Error loading CSV:', err));
   }, []);
 
   useEffect(() => {
-    // Base cleanup: Filter out header rows that might be in the JSON
-    let result = robots.filter(r =>
-      r.model &&
-      !r.model.toLowerCase().includes('robot model') &&
-      !r.model.toLowerCase().includes('robot series') &&
-      !r.model.toLowerCase().includes('company')
-    );
+    let result = [...robots];
 
-    // Category Filter
-    if (activeCategory !== 'All') {
-      result = result.filter(r => r.category === activeCategory);
+    if (activeOperation !== 'All') {
+      result = result.filter(r => r.operation === activeOperation);
     }
-
-    // Company Filter
     if (activeCompany !== 'All') {
       result = result.filter(r => r.company === activeCompany);
     }
-
-    // Search
     if (searchQuery) {
+      const q = searchQuery.toLowerCase();
       result = result.filter(r =>
-        r.model.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        r.useCase.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        r.company?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        r.notes.toLowerCase().includes(searchQuery.toLowerCase())
+        r.model.toLowerCase().includes(q) ||
+        r.company.toLowerCase().includes(q) ||
+        r.rawApplication.toLowerCase().includes(q) ||
+        r.notes.toLowerCase().includes(q)
       );
     }
 
-    // Sort
     if (sortOption === 'Price Low-High') {
       result.sort((a, b) => parseCost(a.cost) - parseCost(b.cost));
     } else if (sortOption === 'Price High-Low') {
@@ -232,7 +306,7 @@ function App() {
     }
 
     setFilteredRobots(result);
-  }, [activeCategory, activeCompany, searchQuery, sortOption, robots]);
+  }, [activeOperation, activeCompany, searchQuery, sortOption, robots]);
 
   const sortOptions = [
     { label: 'Default', value: 'None' },
@@ -245,9 +319,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="header-badge">System Status: Active</div>
-        <h1 className="gradient-text">Robot Showcase 2026</h1>
-        <p className="scan-counter">Scanning {robots.length.toLocaleString()} Industrial Solutions...</p>
+        <div className="header-badge">Welding Robots Catalog — {robots.length} Models</div>
+        <h1 className="gradient-text">Industrial Welding Robots</h1>
+        <p className="scan-counter">
+          ABB · Fanuc · KUKA · Yaskawa · Panasonic · OTC · Kawasaki · Durr
+        </p>
       </header>
 
       <div className="search-filter-section">
@@ -255,7 +331,7 @@ function App() {
           <input
             type="text"
             className="search-input"
-            placeholder="Search models, companies, use cases..."
+            placeholder="Search by model, company, application..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -263,11 +339,11 @@ function App() {
 
         <div className="dropdown-row">
           <CustomDropdown
-            label="Category"
-            options={categories.map(c => ({ label: c, value: c }))}
-            value={activeCategory}
-            onChange={setActiveCategory}
-            icon="📁"
+            label="Application Type"
+            options={operations.map(o => ({ label: o, value: o }))}
+            value={activeOperation}
+            onChange={setActiveOperation}
+            icon="🔥"
           />
           <CustomDropdown
             label="Manufacturer"
@@ -284,27 +360,31 @@ function App() {
             icon="⚖️"
           />
         </div>
+
+        <div className="results-count">
+          Showing <strong>{filteredRobots.length}</strong> of {robots.length} robots
+        </div>
       </div>
 
       <div className="robot-grid">
         {filteredRobots.length > 0 ? (
           filteredRobots.map((robot, idx) => (
-            <RobotCard 
-              key={`${robot.model}-${idx}`} 
-              robot={robot} 
+            <RobotCard
+              key={`${robot.model}-${idx}`}
+              robot={robot}
               onClick={() => setSelectedRobot(robot)}
             />
           ))
         ) : (
           <div className="no-results">
-            No systems found matching current query.
+            No robots found matching your filters.
           </div>
         )}
       </div>
 
-      <RobotModal 
-        robot={selectedRobot} 
-        onClose={() => setSelectedRobot(null)} 
+      <RobotModal
+        robot={selectedRobot}
+        onClose={() => setSelectedRobot(null)}
       />
     </div>
   );

@@ -1,0 +1,179 @@
+company,model,application,payload_kg,reach_mm,axes,repeatability,price_inr,notes,image_file
+ABB,IRB 1520ID,Arc/Miig/Tig welding,4,1500,6,±0.05 mm,₹12 – 18 lakh,"Compact, integrated dress pack",ABB_IRB_1520ID.png
+ABB,IRB 1600 / 1660ID,Arc/Miig/Tig welding,6–10,1450–1900,6,±0.02 mm,₹15 – 22 lakh,"Automotive suppliers, fabrication",ABB_IRB_1600___1660ID.png
+ABB,IRB 2600 / 2600ID,Arc/Mig/spot welding,12–20,1650–1850,6,±0.04 mm,₹18 – 26 lakh,High payload arc welding,ABB_IRB_2600___2600ID.jpeg
+ABB,IRB 4600,Arc/Spotwelding,20,2050,6,±0.05 mm,₹22 – 32 lakh,High speed & rigidity,ABB_IRB_4600.jpeg
+ABB,IRB 6700,Spot & heavy arc welding,150–300,2650–3200,6,±0.06 mm,₹30 – 45 lakh,Automotive BIW welding,ABB_IRB_6700.jpeg
+ABB,IRB 7600,Heavy welding,150–500,up to 3100,6,±0.10 mm,₹45 – 70 lakh,Large structural components,ABB_IRB_7600.png
+ABB,IRB 460,,110,2.4,4,±0.10 mm,₹18 – 25 lakh,High-speed end-of-line palletizing and bag/carton stacking; compact footprint for tight lines.,
+ABB,IRB 660-180/3.15,,180,3.15,4,±0.15 mm,₹25 – 35 lakh,"Mid-range palletizing mostly for boxes, crates and mixed goods; versatile reach for multi-conveyor cells.",ABB_IRB_660-180_3_15.jpeg
+ABB,IRB 660-250/3.15,,250,3.15,4,±0.15 mm,₹28 – 40 lakh,"Higher payload palletizing for heavier items — large boxes, bottles or bulk packaging.",ABB_IRB_660-250_3_15.jpeg
+ABB,IRB 760,,450,3.18,4,±0.20 mm,₹45 – 65 lakh,"Large payload palletizing for full pallet layers — heavy loads like sacks, cartons, and industrial containers.",ABB_IRB_760.jpeg
+ABB,ABB IRB 52,,7,0.475 m / 0.7 m,6,±0.15 mm,₹30 – 55 Lakh,"Compact paint robot, small & medium components, plastic & metal parts",ABB_ABB_IRB_52.jpeg
+ABB,ABB IRB 5350,,7,1350 mm (with rail),6,±0.15 mm,₹35 – 65 Lakh,Door opening & interior paint positioner,ABB_ABB_IRB_5350.jpeg
+ABB,ABB IRB 5400,,15,1620,6,±0.15 mm,₹60 – 90 Lakh,"General industrial paint, medium jobs",ABB_ABB_IRB_5400.png
+ABB,ABB IRB 5510,,13,2560,6,±0.15 mm,₹80 Lakh – 1.2 Cr,"Medium exterior paint, automotive body panels",ABB_ABB_IRB_5510.jpeg
+ABB,ABB IRB 5500-22 (FlexPainter),,13,2700 (with rail),6,±0.10–0.15 mm,₹1.0 – 1.4 Cr,Automotive exterior paint – car body,ABB_ABB_IRB_5500-22__FlexPainter.jpeg
+ABB,ABB IRB 5500-23 (FlexPainter),,13,3000 (with rail),6,±0.10–0.15 mm,₹1.1 – 1.5 Cr,Large vehicle panels & heavy jobs,ABB_ABB_IRB_5500-23__FlexPainter.jpeg
+ABB,ABB IRB 5500-25 (Elevated Rail),,13,Large envelope on rail,6,±0.10–0.15 mm,₹1.2 – 1.8 Cr,Rail-mounted exterior painting,
+ABB,ABB IRB 5500-27 (7-Axis FlexPainter),,17,Extended flexible,6,±0.10–0.15 mm,₹1.4 – 2.2 Cr,Extra axis = high workspace flexibility,ABB_ABB_IRB_5500-27__7-Axis_FlexPainter.jpeg
+ABB,ABB IRB 1300,,7–12,900 – 1400,6,±0.02–0.03 mm,₹35 – 60 Lakh*,"Compact finishing robot used for deburring, polishing, grinding, sanding on small/medium parts; excellent path accuracy & stiffness.",ABB_ABB_IRB_1300.jpeg
+ABB,ABB IRB 1200,,5–10,"900 (e.g., 0.9 m)",6,±0.05–0.10 mm,₹40 – 70 Lakh*,"Mid-range general purpose robot useful for deburring, trimming, machining of cast/injection molded parts.",ABB_ABB_IRB_1200.png
+ABB,ABB IRB 2400,,10–16,1550,0.857142857142857,±0.03 mm,₹55 – 90 Lakh*,"Classic robot for deburring, grinding, polishing and contour following; compact and high accuracy.",ABB_ABB_IRB_2400.jpeg
+ABB,ABB IRB 4400-60,,60,1960,6,±0.15 mm,₹80 L – ₹1.4 Cr*,Larger payload & reach; suitable for heavy part deburring/grinding with force control tooling.,ABB_ABB_IRB_4400-60.jpeg
+ABB,ABB IRB 6600,,225,2550,6,±0.10 mm,₹1.2 – ₹2.0 Cr*,"Large industrial robot for heavy finishing, deburring, grinding and machine tending in automotive & general industry.",
+ABB,ABB IRB 6660,,100–205,1930,6,±0.07–0.11 mm,₹1.3 – ₹2.2 Cr*,Designed for machining/deburring/grinding of large castings and press parts.,ABB_ABB_IRB_6660.jpeg
+ABB,ABB IRB 7600,,150–500,2550+,6,±0.10 mm,₹1.5 – ₹2.8 Cr*,"Heavy payload for large part finishing/deburring, material removal tasks.",ABB_ABB_IRB_7600.png
+Fanuc,ARC Mate 50iD,Arc,7,717,6,±0.03 mm,₹12 – 16 lakh,,Fanuc_ARC_Mate_50iD.png
+Fanuc,ARC Mate 50iD/7L,Arc,7,911,6,±0.03 mm,₹13 – 18 lakh,,Fanuc_ARC_Mate_50iD_7L.png
+Fanuc,ARC Mate 100iD,Arc,12,1441,6,±0.02 mm,₹15 – 22 lakh,,
+Fanuc,ARC Mate 100iD/8L,Arc,8,2032,6,±0.02 mm,₹16 – 24 lakh,,Fanuc_ARC_Mate_100iD_8L.jpeg
+Fanuc,ARC Mate 120iD / 12L,Arc,12,2272,6,±0.02 mm,₹18 – 26 lakh,,Fanuc_ARC_Mate_120iD___12L.jpeg
+Fanuc,R-2000 / M-900 series,Spot welding,100–270,2600–3200,6,±0.20 mm,₹30 – 50 lakh,,Fanuc_R-2000___M-900_series.jpeg
+Fanuc,M-410iB/140H,,140,2850,5,±0.50 mm,₹25 – 35 lakh,Mid-range palletizing & handling (medium payload),Fanuc_M-410iB_140H.png
+Fanuc,M-410iB/700,,700,3143,4,±0.50 mm,₹45 – 65 lakh,Heavy payload palletizing (bulk items),Fanuc_M-410iB_700.png
+Fanuc,M-410iC/185,,185,3143,4,±0.30 mm,₹28 – 38 lakh,General purpose palletizing,Fanuc_M-410iC_185.png
+Fanuc,M-410iC/315,,315,3143,4,±0.30 mm,₹35 – 50 lakh,Mid-heavy palletizing & stacking,Fanuc_M-410iC_315.jpeg
+Fanuc,M-410iC/500,,500,3143,4,±0.30 mm,₹45 – 65 lakh,Heavy bag or boxed goods palletizing,Fanuc_M-410iC_500.jpeg
+Fanuc,M-410iC/110,,110,2403,4,±0.30 mm,₹22 – 32 lakh,Compact palletizing for lighter loads,Fanuc_M-410iC_110.png
+Fanuc,Mate 200iA/5L,,5,892,6,±0.03 mm,₹25 – 45 Lakh,"Small paint applications, compact parts, small booths",
+Fanuc,P-40iA,,5,1300,6,±0.03 mm,₹30 – 55 Lakh,"Mid-small paint tasks, versatile mounting (floor/ceiling/wall)",Fanuc_P-40iA.png
+Fanuc,P-50iB / P-50iB/10L,,10,1400–1800,6,±0.05–0.1 mm,₹45 – 75 Lakh,"Medium paint tasks, slightly larger reach & payload option",Fanuc_P-50iB___P-50iB_10L.png
+Fanuc,P-250iB/15,,15,2800,6,±0.07–0.2 mm,₹85 Lakh – 1.4 Cr,"Mid-to-large paint jobs (car panels, larger parts)",Fanuc_P-250iB_15.jpeg
+Fanuc,P-350iA/45,,45,2606,6,±0.06–0.1 mm,₹1.0 – 2.0 Cr+,Heavy payload paint robot for large fixtures or multi-gun setups,Fanuc_P-350iA_45.png
+Fanuc,P-1000iA,,10–15,3348–339,7,±0.08 mm,₹1.2 – 2.2 Cr+,"Large reach, 7-axis flexible paint layout (booth reduction)",Fanuc_P-1000iA.png
+Fanuc,CRX-10iA/L Paint (cobot),,10,1418–2836 (workspace variable),6,±0.04 mm,₹30 – 60 Lakh (cobot class),"Collaborative paint cell, explosion-proof option",Fanuc_CRX-10iA_L_Paint__cobot.png
+Fanuc,LR Mate 200iD,,7–14,717–1274,6,±0.01 mm,₹30 – 70 L*,"Compact finish/handling robot; used for light deburring, polishing, mold release spray, precise small parts.",Fanuc_LR_Mate_200iD.png
+Fanuc,M-20iD/25,,25,1853*,6,±0.05 mm*,₹70 L – ₹1.2 Cr*,"Mid payload industrial robot often used for deburring/grinding, contour following with force control",Fanuc_M-20iD_25.png
+Fanuc,M-20iD/35,,35,1831,6,±0.03 mm*,₹80 L – ₹1.5 Cr*,Similar to M-20iD/25 but higher payload; good for heavy finishing tasks,Fanuc_M-20iD_35.png
+Fanuc,M-710iC-20,,20–30,2000-2200*,6,±0.05–0.10 mm,₹1.0 – ₹2.0 Cr*,"Medium-range general industrial robot; material removal, machining support & finishing.",Fanuc_M-710iC-20.jpeg
+Fanuc,"FANUC R-2000iC (e.g., 165/210/270)",,165–270,2655–4304 (varies),6,±0.03–0.05 mm,₹2.0 – ₹4.5 Cr*,"Heavy duty arm used in large part deburring/grinding, press-to-press handling, heavy fixtures.",Fanuc_FANUC_R-2000iC__e_g___165_210_270.png
+Fanuc,CRX-10iA / CRX-20iA/L / CRX-30iA (Cobots),,10–30,~994 – ~1756,,±0.04–0.05 mm,₹30 – ₹90 L*,"Collaborative robot line; can be used for light deburring/polishing/finish with material removal tooling (PushCorp Grind X, etc.).",Fanuc_CRX-10iA___CRX-20iA_L___CRX-30iA__Cobots.jpeg
+Yaskawa,AR900,Arc,7,927,6,±0.01 mm,₹12 – 18 lakh,,Yaskawa_AR900.jpeg
+Yaskawa,AR1440,Arc,12,1440,6,±0.02 mm,₹15 – 22 lakh,,Yaskawa_AR1440.jpeg
+Yaskawa,AR2010,Arc,12,2010,6,±0.03 mm,₹18 – 26 lakh,,Yaskawa_AR2010.jpeg
+Yaskawa,GP25,Arc / handling,25,1730,6,±0.02 mm,₹16 – 24 lakh,,Yaskawa_GP25.jpeg
+Yaskawa,SP series,Spot welding,80–250,2600–3000,6,±0.04 mm,₹18 – 28 lakh,,Yaskawa_SP_series.png
+Yaskawa,PL190-100,,100,3159,4,±0.10 mm,₹25 – 35 lakh,"High-speed palletizing of light cartons, boxes and bags in packaging and logistics cells. Excellent for FMCG, food & beverage",Yaskawa_PL190-100.jpeg
+Yaskawa,PL190,,190,3159,4,±0.10 mm,₹28 – 38 lakh,Standard palletizing across many mid-weight applications — robust general use in packaging & distribution.,Yaskawa_PL190.jpeg
+Yaskawa,PL320,,320,3159,4,±0.20 mm,₹35 – 50 lakh,"Mid-heavy palletizing — boxes, crates, packages where 190 kg isn’t enough. Great reach and stable handling.",Yaskawa_PL320.png
+Yaskawa,PL500,,500,3159,4,±0.20 mm,₹45 – 65 lakh,Heavy palletizing — large boxed goods or sacks for warehouse and industrial end-of-line automation.,Yaskawa_PL500.jpeg
+Yaskawa,MPX1150,,5,727,6,±0.02–0.03 mm,₹30 – 55 Lakh,"Compact paint robot for small parts, tight booths.",Yaskawa_MPX1150.jpeg
+Yaskawa,MPX1950,,7,1450,6,±0.15 mm,₹45 – 75 Lakh,Medium painting robot; fits multiple guns/bells,Yaskawa_MPX1950.jpeg
+Yaskawa,MPO10,,10,1400,6,±0.15 mm*,₹60 – 90 Lakh,Door opening & paint assist robot; often used in auto paint shops.,Yaskawa_MPO10.jpeg
+Yaskawa,MPX2600 / MPX3500,,≤ 15,2000 – 2700,6,±0.15 mm,₹90 Lakh – ₹1.5 Cr+,"Mid-to-large exterior paint jobs (car bodies, larger components).",Yaskawa_MPX2600___MPX3500.jpeg
+Yaskawa,MPX Series Others (higher reach),,≤ 15,up to ~3500,6,±0.15 mm,₹1.2 – ₹2.0 Cr+,Large application painting cells; extended envelope.,Yaskawa_MPX_Series_Others__higher_reach.png
+Yaskawa,Yaskawa Deburring Robot images,,,,,,,,
+Yaskawa,HC10 / HC10L,,10,1000–1300,6,±0.02–0.05 mm,₹35 – 70 Lakh,"Compact high-speed robot, ideal for light deburring, polishing, small parts finishing.",Yaskawa_HC10___HC10L.jpeg
+Yaskawa,MH12,,12,1300,6,±0.05 mm,₹45 – 85 Lakh,"Good medium payload, precise finishing and contour grinding.",Yaskawa_MH12.jpeg
+Yaskawa,MH24,,24,2400,6,±0.07 mm,₹60 L – ₹1.2 Cr,Longer reach for medium/large parts; suitable for grinding & surface finishing.,Yaskawa_MH24.png
+Yaskawa,MA1400,,12,1412,6,±0.05 mm,₹55 – ₹1.0 Cr,Popular mid-size general purpose robot adapted for deburring/grinding cells.,Yaskawa_MA1400.jpeg
+Yaskawa,MA2010,,20,2023,6,±0.07 mm,₹80 L – ₹1.5 Cr,Larger workplace envelope; heavier tools and finish spindles.,Yaskawa_MA2010.jpeg
+Yaskawa,MH50 / MH50S,,50,3000,6,±0.10 mm,₹1.0 – ₹2.0 Cr+,Heavy payload finish robot; big parts / heavy material removal.,Yaskawa_MH50___MH50S.jpeg
+Yaskawa,HP20 / HP20XL,,20,1940–2940,6,±0.08 mm,₹75 L – ₹1.5 Cr,"High payload & reach balance; finishing of large castings, weld seams.",
+Yaskawa,EA1900N / EA1900H (EX series),,20,1900,6,±0.08 mm,₹70 L – ₹1.4 Cr,EX series robust robot used in industrial finishing & material removal.,Yaskawa_EA1900N___EA1900H__EX_series.png
+Yaskawa,GP8 / GP12 (cobot / lightweight),,8–12,800–1200,6,±0.03–0.05 mm,₹30 – ₹70 Lakh,"For light deburring, polishing, automation with human collaboration.",Yaskawa_GP8___GP12__cobot___lightweight.jpeg
+KUKA,KR CYBERTECH Arc,Arc,6–20,1610–2010,6,±0.04 mm,₹14 – 20 lakh,,KUKA_KR_CYBERTECH_Arc.png
+KUKA,KR 16 / KR 30,Arc,16–30,1800–2100,6,±0.04 mm,₹18 – 30 lakh,,KUKA_KR_16___KR_30.jpeg
+KUKA,KR 210 / KR 240,Spot & heavy welding,210–240,2900,6,±0.06 mm,₹35 – 55 lakh,,KUKA_KR_210___KR_240.jpeg
+KUKA,KR 40 PA,,40,2091,4,±0.05 mm,₹18 – 25 lakh,"Fast stacking of light goods (boxes, cartons) with compact footprint.",KUKA_KR_40_PA.jpeg
+KUKA,KR 120 R3200 PA,,120,3195,4,±0.05 mm,₹28 – 38 lakh,Medium-load palletizing — good for FMCG and logistics boxes.,KUKA_KR_120_R3200_PA.jpeg
+KUKA,KR 240 PA,,240,3195,4,±0.06 mm,₹40 – 55 lakh,Mid-heavy palletizing applications (larger cartons/bags).,KUKA_KR_240_PA.png
+KUKA,KR 300-2 PA,,300,3150,4,±0.06 mm,₹45 – 60 lakh,High-speed medium-heavy palletizing with efficient reach.,KUKA_KR_300-2_PA.png
+KUKA,KR 470-2 PA,,470,3150,4,±0.06 mm,₹55 – 75 lakh,Heavy palletizing — larger loads and industrial packaging.,KUKA_KR_470-2_PA.jpeg
+KUKA,KR 700 PA,,700,3320,4,±0.06 mm,₹70 – 95 lakh,Very heavy palletizing — full pallet layers and large crates.,KUKA_KR_700_PA.png
+KUKA,KR 1000 Titan PA / KR 1000 1300 Titan PA,,950–1300,3202–3601,4,±0.10 mm,₹1.2 – 1.8 crore,Ultra-heavy palletizing — largest loads and industrial stacking.,
+KUKA,KR 4 AGILUS,,4,600,6,±0.02 mm,₹30 – 55 Lakh,Compact spray painting & coating of small parts; tight spaces; small booths,KUKA_KR_4_AGILUS.jpeg
+KUKA,KR 6 R700 / R900 AGILUS,,6–8,700 – 900,6,±0.02–0.03 mm,₹35 – 60 Lakh,Small-to-medium coating tasks; high precision; EX / explosion-proof variants available,KUKA_KR_6_R700___R900_AGILUS.jpeg
+KUKA,KR 10 R1100 AGILUS / EX,,10,1100,6,±0.02–0.03 mm,₹50 – 85 Lakh,Slightly larger small paint jobs; interior panels / sub-assembly painting,KUKA_KR_10_R1100_AGILUS___EX.png
+KUKA,KR CYBERTECH / CYBERTECH nano,,8 – 12 est,1400 – 2100 est,6,±0.04 mm typical,₹65 Lakh – ₹1.2 Cr,"Mid-range flexible robot; good for medium parts, irregular shapes, automotive add-ons",KUKA_KR_CYBERTECH___CYBERTECH_nano.jpeg
+KUKA,KR IONTEC (large range),,20 – 70 est,2000 – 3100 est,6,±0.06–0.15 mm,₹1.0 – ₹2.5 Cr,Large reach & payload for bigger body panels & large fixtures,KUKA_KR_IONTEC__large_range.jpeg
+KUKA,KR QUANTEC (PA option),,120 – 300 est,3000 – 3900 est,6,±0.06–0.15 mm,₹1.2 – ₹3.0 Cr,High payload / long reach (with linear axis possible); heavy exterior paint jobs (needs custom painting head),KUKA_KR_QUANTEC__PA_option.jpeg
+KUKA,KR AGILUS (KR 4 / KR 6),,4–6,600–900,6,±0.02–0.03 mm,₹30 – 60 Lakh,"Compact finishing robot for precise deburring, polishing, grinding of small parts; high speed, high stiffness.",KUKA_KR_AGILUS__KR_4___KR_6.jpeg
+KUKA,KR 10 R1100,,10,1100,6,±0.03 mm,₹55 – 90 Lakh,Versatile general-purpose robot; good balance of reach & payload for deburring & grinding.,KUKA_KR_10_R1100.png
+KUKA,KR CYBERTECH 10/12,,10–12,1400–2100,6,±0.04–0.05 mm,₹65 L – ₹1.2 Cr,Mid-range general purpose robot; suited for medium parts finishing & machining support.,KUKA_KR_CYBERTECH_10_12.png
+KUKA,KR CYBERTECH nano,,8–10,900–1300,6,±0.03–0.05 mm,₹60 – 1.1 Cr,Flexible mid-size robot used for precision contour grinding/polishing.,KUKA_KR_CYBERTECH_nano.jpeg
+KUKA,KR IONTEC (various),,20–70,2000–3100,6,±0.06–0.10 mm,₹90 L – ₹2.5 Cr,"Larger reach & payload — ideal for heavy deburring, weld seam grinding, large surfaces.",KUKA_KR_IONTEC__various.jpeg
+KUKA,KR QUANTEC (various),,120–300,2500–3900+,6,±0.08–0.15 mm,₹1.2 – ₹3.0 Cr,Heavy payload robot for large body & structure finishing/grinding.,KUKA_KR_QUANTEC__various.png
+KUKA,KR FORTEC,,180–300,3100,6,±0.10–0.15 mm,₹1.5 – ₹3.5 Cr,Extra heavy duty finishes and large structural deburring/grinding.,
+Panasonic,G4 Series,Arc (MIG/MAG/TIG),6–15,1400–1800,6,±0.08 mm,₹18 – 25 lakh,Integrated robot + power source,Panasonic_G4_Series.jpeg
+Panasonic,WG4 / WGH4,Arc (high current),6–20,model dependent,6,±0.06 mm,₹22 – 32 lakh,Automotive & precision welding,Panasonic_WG4___WGH4.jpeg
+Panasonic,TM-1400,,6,1437,6,±0.08 mm,₹40 – 75 Lakh,Mid-reach robot for deburring/contour finishing; balance of reach & payload.,Panasonic_TM-1400.jpeg
+Panasonic,TM-1800,,6,1809,6,±0.08 mm,₹60 L – ₹1.0 Cr,Longer reach; useful for medium/large parts deburring & grinding.,Panasonic_TM-1800.png
+Panasonic,TA-1600,,8,1598,6,±0.10 mm,₹45 – 85 Lakh,Larger reach and payload for tougher finish tasks (heavier tooling).,Panasonic_TA-1600.png
+Panasonic,TA-1400,,6,1374,6,±0.10 mm,₹40 – 75 Lakh,Similar to TM-1400; good for small/medium finishing,Panasonic_TA-1400.jpeg
+Panasonic,TL-1800,,6,1801,6,±0.08 mm,₹60 L – ₹1.1 Cr,Longer arm variant; mid-to-large part finishing applications,Panasonic_TL-1800.png
+Panasonic,TL-2000,,6,1999,6,±0.10 mm,₹70 L – ₹1.2 Cr,Extended reach; suitable for larger part finishing,Panasonic_TL-2000.png
+Panasonic,LA-1800,,26,1801,6,±0.07 mm,₹1.0 – ₹1.8 Cr+,Medium-payload multi-purpose robot; best for heavier deburring/finishing and material removal.,Panasonic_LA-1800.png
+Panasonic,TS-800,,8,841,6,±0.05 mm,₹30 – 55 Lakh,"Compact robot for small-part finishing, light deburring and polishing. Suitable for tight spaces.",Panasonic_TS-800.png
+Panasonic,TS-950,,8,971,6,±0.05 mm,₹30 – 60 Lakh,Slightly larger footprint than TS-800; small to medium parts finishing.,Panasonic_TS-950.png
+Panasonic,TA-1000,,6,1068,6,±0.1 mm,₹30 – 55 Lakh,"Small/compact robot, useful for small parts paint & coating; 6-axis articulated.",Panasonic_TA-1000.png
+Panasonic,TA-1400,,6,1374,6,±0.10 mm,₹40 – 75 Lakh,Similar to TM-1400; good for small/medium finishing,Panasonic_TA-1400.jpeg
+Panasonic,TA-1600,,8,1598,6,±0.10 mm,₹45 – 85 Lakh,Larger reach and payload for tougher finish tasks (heavier tooling).,Panasonic_TA-1600.png
+Panasonic,TM-1100,,6,1163,6,±0.08 mm,₹35 – 65 Lakh,Good general-purpose finishing robot; can be used for deburring on smaller parts,Panasonic_TM-1100.jpeg
+Panasonic,TM-1400,,6,1437,6,±0.08 mm,₹40 – 75 Lakh,Mid-reach robot for deburring/contour finishing; balance of reach & payload.,Panasonic_TM-1400.png
+Panasonic,TM-1600,,6,1639,6,±0.08 mm,₹50 – 85 Lakh,Used where compact reach but precision repeatability is needed,Panasonic_TM-1600.jpeg
+Panasonic,TM-1800,,6,1809,6,±0.08 mm,₹60 L – ₹1.0 Cr,Longer reach; useful for medium/large parts deburring & grinding.,Panasonic_TM-1800.png
+Panasonic,TM-2000,,8,2011,6,±0.10 mm,₹70 L – ₹1.2 Cr,Long reach for larger envelopes; can be used in heavy finish cells.,Panasonic_TM-2000.png
+Panasonic,L-1800,,6,1801,8,±0.15 mm,₹60 – 95 Lakh,Long arm for larger envelope paint types; similar to TM.,Panasonic_L-1800.png
+Panasonic,TL-2000,,6,1999,6,±0.10 mm,₹70 L – ₹1.2 Cr,Extended reach; suitable for larger part finishing,Panasonic_TL-2000.jpeg
+Panasonic,TS-800,,8,841,6,±0.05 mm,₹30 – 55 Lakh,"Compact robot for small-part finishing, light deburring and polishing. Suitable for tight spaces.",Panasonic_TS-800.png
+Panasonic,TS-950,,8,971,6,±0.05 mm,₹30 – 60 Lakh,Slightly larger footprint than TS-800; small to medium parts finishing.,Panasonic_TS-950.png
+Panasonic,TM-1100,,6,1163,6,±0.08 mm,₹35 – 65 Lakh,Good general-purpose finishing robot; can be used for deburring on smaller parts,Panasonic_TM-1100.jpeg
+Panasonic,TM-1400,,6,1437,6,±0.08 mm,₹40 – 75 Lakh,Mid-reach robot for deburring/contour finishing; balance of reach & payload.,Panasonic_TM-1400.jpeg
+Panasonic,TA-1400,,6,1374,6,±0.10 mm,₹40 – 75 Lakh,Similar to TM-1400; good for small/medium finishing,Panasonic_TA-1400.jpeg
+Panasonic,TA-1600,,8,1598,6,±0.10 mm,₹45 – 85 Lakh,Larger reach and payload for tougher finish tasks (heavier tooling).,Panasonic_TA-1600.png
+Panasonic,TM-1800,,6,1809,6,±0.08 mm,₹60 L – ₹1.0 Cr,Longer reach; useful for medium/large parts deburring & grinding.,Panasonic_TM-1800.png
+Panasonic,TM-2000,,8,2011,6,±0.10 mm,₹70 L – ₹1.2 Cr,Long reach for larger envelopes; can be used in heavy finish cells.,Panasonic_TM-2000.png
+Panasonic,TL-1800,,6,1801,6,±0.08 mm,₹60 L – ₹1.1 Cr,Longer arm variant; mid-to-large part finishing applications,Panasonic_TL-1800.jpeg
+Panasonic,TL-2000,,6,1999,6,±0.10 mm,₹70 L – ₹1.2 Cr,Extended reach; suitable for larger part finishing,Panasonic_TL-2000.jpeg
+Panasonic,LA-1800,,26,1801,6,±0.07 mm,₹1.0 – ₹1.8 Cr+,Medium-payload multi-purpose robot; best for heavier deburring/finishing and material removal.,Panasonic_LA-1800.png
+kawasaki,RA005L,Arc,5,903,6,±0.02 mm,₹12 – 16 lakh,,kawasaki_RA005L.png
+kawasaki,RA010N,Arc,10,1450,6,±0.02 mm,₹13 – 18 lakh,,kawasaki_RA010N.jpeg
+kawasaki,BA006 / BA013 Series,Arc,6–13,1445–2093,6,±0.08 mm,₹18 – 28 lakh,,kawasaki_BA006___BA013_Series.png
+kawasaki,BZ / Spot welding,Spot,80–250,2600–3000,6,±0.10 mm,₹25 – 40 lakh,,kawasaki_BZ___Spot_welding.png
+kawasaki,CP180L,,180,3255,4,±0.5 mm,₹18 – 26 Lakh,High-speed palletizing for medium loads; widely used in logistics & packaging.,kawasaki_CP180L.png
+kawasaki,CP300L,,300,3255,4,±0.5 mm,₹22 – 32 Lakh,Mid-weight palletizing; suits heavier crates and boxes.,kawasaki_CP300L.png
+kawasaki,CP500L,,500,3255,4,±0.5 mm,₹30 – 42 lakh,Heavy palletizing; useful for robust industrial stack handling.,kawasaki_CP500L.png
+kawasaki,CP700L,,700,3255,4,±0.5 mm,₹38 – 55 Lakh,Very heavy palletizing; full pallet layers or heavy products.,kawasaki_CP700L.png
+kawasaki,RD080N,,80,2100,5,±0.06–0.10 mm,₹10 – 18 Lakh,Compact high-speed robot ideal for smaller palletizing cells or confined spaces.,kawasaki_RD080N.png
+kawasaki,KF121,,5,1240,6,±0.15–0.2 mm (typical paint env),₹30 – 50 Lakh,Compact explosion-proof paint robot; small parts in paint booths.,kawasaki_KF121.png
+kawasaki,KJ125,,8,1299,6,±0.15 mm,₹35 Lakh – ₹70 Lakh,6-axis compact robot useful for medium finishing/deburring tasks where higher flexibility needed.,kawasaki_KJ125.png
+kawasaki,KJ155,,8,1545,6,±0.15 mm,₹40 Lakh – ₹80 Lakh,Mid-range robot often used in finishing cells; can be used for deburring with appropriate tooling.,kawasaki_KJ155.png
+kawasaki,KF192 / KF193 / KF194,,12,1973–1978,6,±0.15–0.25 mm,₹60 Lakh – ₹1.0 Crore,Medium-size explosion-proof paint robots; automotive & industrial panels.,kawasaki_KF192___KF193___KF194.png
+kawasaki,KF262 / KF263 / KF264,,12,2665–2668,6,±0.15–0.25 mm,₹80 Lakh – ₹1.3 Crore,Longer reach paint robots: larger exterior parts & cabinets.,kawasaki_KF262___KF263___KF264.png
+kawasaki,KJ244,,15,2490,6,±0.15–0.3 mm,₹90 Lakh – ₹1.4 Crore,Higher payload paint robot; flexible mounting.,kawasaki_KJ244.png
+kawasaki,KJ264,,15,2640,6,±0.15–0.3 mm,₹90 Lakh – ₹1.5 Crore,Long reach with stronger payload; automotive bodies.,kawasaki_KJ264.png
+kawasaki,KJ314 (7-Axis),,15,3100,7,±0.15–0.3 mm,₹1.2 – ₹2.0 Crore,7-axis paint robot for hard-to-reach areas & complex trajectories.,kawasaki_KJ314__7-Axis.jpeg
+kawasaki,RS006L,,6,1650,6,±0.03 mm,₹30 – 60 Lakh,"Compact industrial robot; good for small part deburring, grinding, polishing tasks. Applic. include material remova",kawasaki_RS006L.png
+kawasaki,RS013N,,13,1460,6,±0.04–0.05 mm,₹40 – 80 Lakh,Mid-small robot with extended range; fits material removal & finishing tooling.,kawasaki_RS013N.jpeg
+kawasaki,RS20N,,20,1725,6,±0.04 mm,₹60 Lakh – ₹1.0 Crore,"Mid-payload for deburring/grinding, material handling & finishing paths",
+kawasaki,KJ125,,8,1299,6,±0.15 mm,₹35 Lakh – ₹70 Lakh,6-axis compact robot useful for medium finishing/deburring tasks where higher flexibility needed.,kawasaki_KJ125.jpeg
+kawasaki,KJ155,,8,1545,6,±0.15 mm,₹40 Lakh – ₹80 Lakh,Mid-range robot often used in finishing cells; can be used for deburring with appropriate tooling.,kawasaki_KJ155.png
+kawasaki,KJ264J,,15,2640,6,±0.5 mm,₹80 Lakh – ₹1.5 Crore,Longer reach robot suitable for large parts deburring/grinding/finishing cells.,kawasaki_KJ264J.jpeg
+kawasaki,KJ314,,15,3100,6,±0.5 mm,₹1.0  – ₹2.0 Crore,"Large reach robot for big envelope finishing, deburring large castings/surfaces.",kawasaki_KJ314.png
+OTC,FD-H5,Arc,5,866,6,±0.08 mm,₹14 – 18 lakh,,OTC_FD-H5.jpeg
+OTC,FD-B6,Arc,6,1445,6,±0.08 mm,₹15 – 20 lakh,,OTC_FD-B6.png
+OTC,FD-V8 / V8L,,8,2139 – ~2236,6,±0.08 mm,₹70 Lakh – ₹1.1 Crore,Longer reach robot for larger parts / bulk coating lines (estimated from FD series portfolio).,OTC_FD-V8___V8L.png
+OTC,FD-V25,Arc,25,1710,6,±0.15 mm,₹22 – 30 lakh,,OTC_FD-V25.jpeg
+OTC,FD-V80,Heavy arc,80,2500,6,±0.20 mm,₹30 – 45 lakh,,OTC_FD-V80.jpeg
+OTC,FD-V100 / V130,Heavy welding,100–130,2100–2236,6,±0.25 mm,₹40 – 60 lakh,,OTC_FD-V100___V130.jpeg
+OTC,FD-V6L,,6,2006,6,±0.08 mm,₹45 – 75 Lakh,Mid-reach robot suitable for medium parts paint / coating lines.,OTC_FD-V6L.jpeg
+OTC,FD-V6S,,6,2006,7,±0.08 mm,₹12–20 Lakh,"7-axis version of V6; extra axis increases flexibility for complex paths, can be used for material handling & palletizing",OTC_FD-V6S.gif
+OTC,NV8LS2,,8,1910,6,±0.08 mm,₹50 – 80 Lakh,Slightly higher payload and reach for broader paint/coating tasks.,OTC_NV8LS2.png
+OTC,FD-19-V210,,210,2674,6,±0.15 mm,₹45–80 Lakh,Very heavy payload handling robot suitable for heavy stack/logistics operations (also large pallet loads).,OTC_FD-19-V210.jpeg
+OTC,FD-V25L,,25,3136,6,±0.07 mm,₹25–40 Lakh,Long reach and mid payload; suitable for larger or higher palletizing cells,OTC_FD-V25L.png
+OTC,FD-H5 / FD19-H5,,5,866,6,±0.05 mm,₹30 – 55 Lakh,Compact robot used for small parts coating / precise finishing; high speed & precision,OTC_FD-H5___FD19-H5.jpeg
+OTC,FD-V6L,,6,2006,6,±0.08 mm,₹45 – 75 Lakh,Mid-reach robot suitable for medium parts paint / coating lines.,OTC_FD-V6L.jpeg
+OTC,NV8LS2,,8,1910,6,±0.08 mm,₹50 – 80 Lakh,Slightly higher payload and reach for broader paint/coating tasks.,OTC_NV8LS2.png
+OTC,FD-B6 / FD-B6L,,6,2000 – 2008,6,±0.05 – 0.08 mm,₹50 – 85 Lakh,Longer envelope and stable accuracy; suitable for multi-gun coating tasks.,OTC_FD-B6___FD-B6L.png
+OTC,FD-V8 / V8L,,8,2139 – ~2236,6,±0.08 mm,₹70 Lakh – ₹1.1 Crore,Longer reach robot for larger parts / bulk coating lines (estimated from FD series portfolio).,OTC_FD-V8___V8L.png
+OTC,FD-V25 / V25L,,25,2500 – ~3136,6,±0.07 – 0.1 mm,₹90 Lakh – ₹1.8 Crore,"Extended-reach, high payload — suitable for large body/exterior painting booths.",OTC_FD-V25___V25L.png
+OTC,FD-V166 / FD-V166H,,166,2654,6,±0.1 mm,₹1.2 – ₹2.5 Crore,Heavy payload arm for large fixtures — can be repurposed for heavy tools or multi-gun arrays (industry series).,OTC_FD-V166___FD-V166H.jpeg
+OTC,FD19-V210 / V210A,,210,2674,6,±0.15 mm,₹1.3 – ₹2.8 Crore,Very high payload for structural parts; possible use in very large coating or material handling paint cells.,OTC_FD19-V210___V210A.png
+Durr,EcoRP 10 R1100,,10,1100,6,±0.10–0.20 mm,₹35 – 65 Lakh,Compact ready-to-spray painting robot for general industry & small parts; supports 1K/2K and high/low pressure paint processes; explosion-proof design possible.,Durr_EcoRP_10_R1100.jpeg
+Durr,EcoRP E/L033i,,10–15 est.,1300–1500+ est.,6,±0.10–0.20 mm,₹90 Lakh – 1.5 Crore,Modular 6-axis robot for automotive exterior/interior paint with or without rail; can also be used for hood/door opening tasks,Durr_EcoRP_E_L033i.jpeg
+Durr,EcoRP E/L133i,,10–15 est.,1300–2000+ est.,6,±0.10–0.20 mm,₹90 Lakh – 1.6 Crore,Similar to E/L033i but usually mounted on EcoRail X (rail) for line tracking painting; flexible mounting,Durr_EcoRP_E_L133i.jpeg
+Durr,EcoRP E043i,,10–15 est.,1800–2500+ est.,6,±0.10–0.20 mm,₹1.2 Lakh – 2.5 Crore,"Advanced 7-axis robot (no rail needed in many cases), larger work envelope, better access to interior body areas (reduces booth size & rail costs).",Durr_EcoRP_E043i.jpeg
+Durr,EcoRP S053i,,15–25+ est.,5000,6,±0.15–0.25 mm,₹2.0 Lakh – 3.5 Crore,Swing-arm robot for commercial vehicle exterior & interior painting; long reach for large body loading areas.,Durr_EcoRP_S053i.jpeg
+Durr,EcoRP S153i,,15–25+ est.,5000+,6,±0.15–0.25 mm,₹2.0 Lakh  – 3.5 Crore,Heavy-duty swing arm robot for large commercial vehicles & industrial parts coatings.,Durr_EcoRP_S153i.jpeg
