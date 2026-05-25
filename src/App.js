@@ -2,15 +2,36 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 // Normalize messy application values from CSV into clean filter buckets
-const normalizeApplication = (raw) => {
-  if (!raw) return 'Other';
-  const lower = raw.toLowerCase();
-  if (lower.includes('spot') && lower.includes('arc')) return 'Arc & Spot Welding';
-  if (lower.includes('spot') && lower.includes('heavy')) return 'Spot & Heavy Welding';
-  if (lower.includes('spot')) return 'Spot Welding';
-  if (lower.includes('heavy')) return 'Heavy Welding';
-  if (lower.includes('arc')) return 'Arc Welding';
-  return raw.trim();
+const normalizeApplication = (application, notes, model) => {
+  const appStr = (application || '').toLowerCase();
+  const notesStr = (notes || '').toLowerCase();
+  const modelStr = (model || '').toLowerCase();
+  
+  const combined = `${appStr} ${notesStr} ${modelStr}`;
+  
+  if (combined.includes('weld') || combined.includes('arc') || combined.includes('spot')) {
+    return 'Welding';
+  }
+  if (combined.includes('paint') || combined.includes('spray') || combined.includes('coat')) {
+    return 'Painting & Coating';
+  }
+  if (combined.includes('palletiz') || combined.includes('stack') || combined.includes('pallet')) {
+    return 'Palletizing';
+  }
+  if (
+    combined.includes('deburr') || 
+    combined.includes('grind') || 
+    combined.includes('polish') || 
+    combined.includes('sanding') || 
+    combined.includes('machining') || 
+    combined.includes('finishing') || 
+    combined.includes('finish') ||
+    combined.includes('removal')
+  ) {
+    return 'Finishing & Grinding';
+  }
+  
+  return application ? application.trim() : 'Other';
 };
 
 const CustomDropdown = ({ label, options, value, onChange, icon }) => {
@@ -142,7 +163,7 @@ const RobotCard = ({ robot, onClick }) => {
         </div>
       )}
       <div className="card-top">
-        <div className="card-operation" data-operation={robot.operation}>{robot.operation}</div>
+        <div className="card-operation" data-operation={robot.operation}>{robot.rawApplication || robot.operation}</div>
         <div className="company-badge">{robot.company}</div>
       </div>
       <h3 className="card-title">{robot.model}</h3>
@@ -254,22 +275,25 @@ function App() {
       .then(response => response.text())
       .then(csvText => {
         const parsedData = parseCSV(csvText);
-        const mappedData = parsedData.map(r => ({
-          company: r.company || '',
-          model: r.model || '',
-          // Store the raw application string for display in modal
-          rawApplication: r.application || '',
-          // Normalized operation for filtering
-          operation: normalizeApplication(r.application),
-          payload: r.payload_kg || '—',
-          reach: r.reach_mm || '—',
-          axes: r.axes || '—',
-          accuracy: r.repeatability || '—',
-          cost: r.price_inr || 'Contact for price',
-          notes: r.notes || '',
-          image_file: r.image_file || '',
-          useCase: r.application || ''
-        }));
+        const mappedData = parsedData.map(r => {
+          const operation = normalizeApplication(r.application, r.notes, r.model);
+          return {
+            company: r.company || '',
+            model: r.model || '',
+            // Store the raw application string for display in modal
+            rawApplication: r.application || operation || 'Other',
+            // Normalized operation for filtering
+            operation: operation,
+            payload: r.payload_kg || '—',
+            reach: r.reach_mm || '—',
+            axes: r.axes || '—',
+            accuracy: r.repeatability || '—',
+            cost: r.price_inr || 'Contact for price',
+            notes: r.notes || '',
+            image_file: r.image_file || '',
+            useCase: r.application || operation || 'Other'
+          };
+        });
         setRobots(mappedData);
         setFilteredRobots(mappedData);
       })

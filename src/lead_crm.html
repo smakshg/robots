@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LeadFlow CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#1A56DB;
+  --primary-light:#EEF3FF;
+  --primary-mid:#3B72F6;
+  --accent:#0EA5E9;
+  --success:#10B981;
+  --warning:#F59E0B;
+  --danger:#EF4444;
+  --pink:#EC4899;
+  --purple:#8B5CF6;
+  --teal:#14B8A6;
+  --bg:#F0F4FB;
+  --surface:#FFFFFF;
+  --surface2:#F7F9FC;
+  --border:#E2E8F4;
+  --text:#1A202C;
+  --text2:#4A5568;
+  --text3:#94A3B8;
+  --sidebar-w:220px;
+  --topbar-h:60px;
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(26,86,219,0.06);
+  --shadow-md:0 4px 24px rgba(26,86,219,0.10);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-height:100vh;display:flex;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;position:fixed;left:0;top:0;z-index:100}
+.sidebar-logo{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sidebar-logo .logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:16px}
+.sidebar-logo span{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--text)}
+.sidebar-logo span em{color:var(--primary);font-style:normal}
+.sidebar-nav{flex:1;padding:12px 10px;overflow-y:auto}
+.nav-section{margin-bottom:18px}
+.nav-label{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;padding:0 8px;margin-bottom:6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--radius-sm);cursor:pointer;color:var(--text2);font-weight:500;font-size:13.5px;transition:all .15s;position:relative;user-select:none}
+.nav-item:hover{background:var(--primary-light);color:var(--primary)}
+.nav-item.active{background:var(--primary-light);color:var(--primary);font-weight:600}
+.nav-item.active::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;background:var(--primary);border-radius:0 3px 3px 0}
+.nav-icon{width:18px;height:18px;opacity:.7}
+.nav-item.active .nav-icon{opacity:1}
+.nav-badge{margin-left:auto;background:var(--primary);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
+.sidebar-user{padding:14px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
+.avatar.sm{width:26px;height:26px;font-size:11px}
+.avatar.lg{width:42px;height:42px;font-size:16px}
+.user-info span{display:block}
+.user-info .uname{font-weight:600;font-size:13px}
+.user-info .urole{font-size:11px;color:var(--text3)}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.topbar{height:var(--topbar-h);background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;flex:1}
+.topbar-title span{color:var(--primary)}
+.search-bar{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px;width:220px}
+.search-bar input{border:none;background:transparent;outline:none;font-size:13px;color:var(--text);width:100%;font-family:'DM Sans',sans-serif}
+.search-bar input::placeholder{color:var(--text3)}
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);font-weight:600;font-size:13px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#1447b5;transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,86,219,.3)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.btn-outline:hover{background:var(--bg)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-success{background:var(--success);color:#fff}
+.notif-btn{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
+.notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;background:var(--danger);border-radius:50%;border:1.5px solid #fff}
+.content{flex:1;overflow-y:auto;padding:24px}
+
+/* ── SCREENS ── */
+.screen{display:none}
+.screen.active{display:block}
+
+/* ── STAT CARDS ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.stat-card .sc-label{font-size:12px;font-weight:500;color:var(--text3);margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.stat-card .sc-value{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:4px}
+.stat-card .sc-change{font-size:12px;display:flex;align-items:center;gap:4px}
+.sc-change.up{color:var(--success)}
+.sc-change.down{color:var(--danger)}
+.stat-card .sc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+
+/* ── TABLE ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:11px 16px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;background:var(--surface2);border-bottom:1px solid var(--border)}
+td{padding:13px 16px;border-bottom:1px solid var(--border);font-size:13.5px;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--primary-light)}
+.clickable-row{cursor:pointer}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge-blue{background:#EEF3FF;color:var(--primary)}
+.badge-green{background:#ECFDF5;color:var(--success)}
+.badge-amber{background:#FFFBEB;color:var(--warning)}
+.badge-red{background:#FEF2F2;color:var(--danger)}
+.badge-purple{background:#F5F3FF;color:var(--purple)}
+.badge-teal{background:#F0FDFA;color:var(--teal)}
+.badge-pink{background:#FDF2F8;color:var(--pink)}
+.badge-gray{background:#F1F5F9;color:var(--text2)}
+.source-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:500}
+
+/* ── PIPELINE STAGE ── */
+.pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
+.pipe-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.pipe-head{padding:12px 14px;font-weight:600;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.pipe-body{padding:10px;display:flex;flex-direction:column;gap:8px;min-height:80px}
+.pipe-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;cursor:pointer;transition:box-shadow .15s}
+.pipe-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.pipe-card .pc-name{font-weight:600;font-size:13px;margin-bottom:3px}
+.pipe-card .pc-company{font-size:11.5px;color:var(--text3)}
+.pipe-card .pc-value{font-size:12px;font-weight:600;color:var(--primary);margin-top:6px}
+
+/* ── LEAD DETAIL ── */
+.detail-grid{display:grid;grid-template-columns:1fr 340px;gap:20px}
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:14px;position:relative}
+.tl-item:not(:last-child) .tl-line{position:absolute;left:15px;top:32px;bottom:0;width:2px;background:var(--border)}
+.tl-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid var(--border);background:var(--surface);z-index:1}
+.tl-content{flex:1;padding-bottom:20px}
+.tl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.tl-title{font-weight:600;font-size:13.5px}
+.tl-time{font-size:11.5px;color:var(--text3)}
+.tl-body{font-size:13px;color:var(--text2);line-height:1.6}
+.tl-comment{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-top:8px;font-size:12.5px}
+.tl-comment .tc-label{font-weight:600;font-size:11.5px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── FORM ELEMENTS ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;font-weight:600;color:var(--text2)}
+.form-control{padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13.5px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--surface);outline:none;transition:border .15s}
+.form-control:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,86,219,.08)}
+select.form-control{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+
+/* ── PROGRESS ── */
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;transition:width .3s}
+
+/* ── MINI CHART ── */
+.mini-chart{display:flex;align-items:flex-end;gap:4px;height:40px}
+.mc-bar{flex:1;border-radius:3px 3px 0 0;opacity:.75;transition:opacity .15s}
+.mc-bar:hover{opacity:1}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:2px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:3px;margin-bottom:20px}
+.tab{padding:7px 16px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:var(--text2);transition:all .15s}
+.tab.active{background:var(--surface);color:var(--primary);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+/* ── COMMENT MANDATORY BOX ── */
+.mandatory-box{background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:14px}
+.mandatory-box .mb-title{font-weight:700;font-size:12.5px;color:#92400E;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.mandatory-box ul{padding-left:16px}
+.mandatory-box li{font-size:12.5px;color:#78350F;line-height:1.7}
+
+/* ── FILTER ROW ── */
+.filter-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.filter-chip{padding:6px 12px;border:1px solid var(--border);border-radius:20px;font-size:12.5px;font-weight:500;color:var(--text2);cursor:pointer;background:var(--surface);transition:all .15s}
+.filter-chip.active,.filter-chip:hover{background:var(--primary-light);color:var(--primary);border-color:#BFDBFE}
+
+/* ── QUOTATION ── */
+.quote-table th{background:var(--primary-light);color:var(--primary)}
+.quote-total{background:var(--primary-light);border-radius:var(--radius-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+
+/* ── DASHBOARD FUNNEL ── */
+.funnel{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.funnel-row{display:flex;align-items:center;gap:10px}
+.funnel-label{width:120px;font-size:12px;color:var(--text2);text-align:right}
+.funnel-bar-wrap{flex:1;background:var(--bg);border-radius:4px;height:24px;overflow:hidden}
+.funnel-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;font-size:11.5px;font-weight:600;color:#fff;transition:width .6s}
+.funnel-count{width:40px;font-size:12px;font-weight:600;color:var(--text)}
+
+/* ── DISPATCH ── */
+.dispatch-steps{display:flex;align-items:flex-start;gap:0;margin:20px 0;position:relative}
+.dispatch-steps::before{content:'';position:absolute;top:18px;left:20px;right:20px;height:2px;background:var(--border);z-index:0}
+.ds-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1}
+.ds-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;border:3px solid var(--surface)}
+.ds-label{font-size:11.5px;font-weight:500;color:var(--text2);text-align:center;max-width:70px}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* ── GRID HELPERS ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.mt-16{margin-top:16px}
+.mt-20{margin-top:20px}
+.mt-8{margin-top:8px}
+.flex{display:flex}
+.flex-col{flex-direction:column}
+.items-center{align-items:center}
+.justify-between{justify-content:space-between}
+.gap-8{gap:8px}
+.gap-12{gap:12px}
+.gap-16{gap:16px}
+.text-sm{font-size:12.5px}
+.text-muted{color:var(--text3)}
+.font-bold{font-weight:700}
+.font-600{font-weight:600}
+.p-16{padding:16px}
+.section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:12px;color:var(--text)}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ SIDEBAR ════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">L</div>
+    <span>Lead<em>Flow</em></span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-label">Main</div>
+      <div class="nav-item active" onclick="showScreen('dashboard',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </div>
+      <div class="nav-item" onclick="showScreen('leads',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Leads
+        <span class="nav-badge">24</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('pipeline',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Pipeline
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Sales</div>
+      <div class="nav-item" onclick="showScreen('quotation',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Quotation
+      </div>
+      <div class="nav-item" onclick="showScreen('dispatch',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Order & Dispatch
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Reports</div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Analytics
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        Settings
+      </div>
+    </div>
+  </nav>
+  <div class="sidebar-user">
+    <div class="avatar">RK</div>
+    <div class="user-info">
+      <span class="uname">Rahul Kumar</span>
+      <span class="urole">Sales Manager</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<main class="main">
+
+  <!-- TOPBAR (dynamic) -->
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">Dashboard <span>Overview</span></div>
+    <div class="search-bar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input placeholder="Search leads, orders…"/>
+    </div>
+    <div class="topbar-actions">
+      <div class="notif-btn"><div class="notif-dot"></div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="showScreen('leads',document.querySelector('.nav-item:nth-child(2)'))">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Lead
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+
+  <!-- ══════════════ SCREEN: DASHBOARD ══════════════ -->
+  <div class="screen active" id="screen-dashboard">
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="sc-icon" style="background:#EEF3FF">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="sc-label">Total Leads</div>
+        <div class="sc-value">248</div>
+        <div class="sc-change up">▲ 12% this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-icon" style="background:#ECFDF5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="sc-label">Converted</div>
+        <div class="sc-value">61</div>
+        <div class="sc-change up">▲ 8% this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-icon" style="background:#FFFBEB">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="sc-label">Quotations Sent</div>
+        <div class="sc-value">89</div>
+        <div class="sc-change up">▲ 5% this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-icon" style="background:#F0FDFA">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="sc-label">Revenue (₹)</div>
+        <div class="sc-value">18.4L</div>
+        <div class="sc-change up">▲ 21% this month</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <!-- Sales Funnel -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Sales Funnel</span>
+          <span class="text-sm text-muted">This Month</span>
+        </div>
+        <div class="p-16">
+          <div class="funnel">
+            <div class="funnel-row">
+              <div class="funnel-label">Lead Calling</div>
+              <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%;background:var(--primary)">248</div></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-label">Visit/Enquiry</div>
+              <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:82%;background:var(--accent)">203</div></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-label">Quotation</div>
+              <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:60%;background:var(--warning)">148</div></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-label">Negotiation</div>
+              <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:44%;background:var(--purple)">109</div></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-label">PI / Order</div>
+              <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:29%;background:var(--teal)">72</div></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-label">Dispatch</div>
+              <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:22%;background:var(--success)">54</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lead Sources -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Lead Sources</span>
+          <span class="badge badge-blue">Live</span>
+        </div>
+        <div class="p-16">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <div class="flex justify-between text-sm mb-4"><span class="font-600">IndiaMart</span><span class="text-muted">102 leads (41%)</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:41%;background:var(--primary)"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-4"><span class="font-600">Reference</span><span class="text-muted">68 leads (27%)</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:27%;background:var(--success)"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-4"><span class="font-600">Cold Calling</span><span class="text-muted">48 leads (20%)</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:20%;background:var(--warning)"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-4"><span class="font-600">Other Sources</span><span class="text-muted">30 leads (12%)</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:12%;background:var(--purple)"></div></div>
+            </div>
+          </div>
+          <div class="mt-16" style="display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;border:1px solid var(--border)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span style="font-size:12px;color:var(--text2)">Mandatory: Select lead source for every new lead</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Leads -->
+    <div class="card mt-20">
+      <div class="card-header">
+        <span class="card-title">Recent Leads</span>
+        <button class="btn btn-outline btn-sm" onclick="showScreen('leads',document.querySelectorAll('.nav-item')[1])">View All</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Lead</th><th>Source</th><th>Stage</th><th>Executive</th><th>Value</th><th>Last Activity</th></tr></thead>
+          <tbody>
+            <tr class="clickable-row" onclick="showScreen('leaddetail',null)">
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#667eea,#764ba2)">AK</div><div><div class="font-600">Ajay Kumar</div><div class="text-muted text-sm">Rajasthan Textiles</div></div></div></td>
+              <td><span class="badge badge-blue">IndiaMart</span></td>
+              <td><span class="badge badge-purple">Negotiation</span></td>
+              <td>Priya S.</td>
+              <td class="font-600">₹2,40,000</td>
+              <td class="text-muted">Today, 10:30</td>
+            </tr>
+            <tr class="clickable-row" onclick="showScreen('leaddetail',null)">
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#f093fb,#f5576c)">SM</div><div><div class="font-600">Sunita Mehta</div><div class="text-muted text-sm">Gujarat Pharma</div></div></div></td>
+              <td><span class="badge badge-green">Reference</span></td>
+              <td><span class="badge badge-amber">Quotation</span></td>
+              <td>Rahul K.</td>
+              <td class="font-600">₹1,80,000</td>
+              <td class="text-muted">Today, 09:15</td>
+            </tr>
+            <tr class="clickable-row">
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">VP</div><div><div class="font-600">Vijay Patil</div><div class="text-muted text-sm">Maharashtra Steel</div></div></div></td>
+              <td><span class="badge badge-amber">Cold Calling</span></td>
+              <td><span class="badge badge-teal">PI Sent</span></td>
+              <td>Anita M.</td>
+              <td class="font-600">₹5,60,000</td>
+              <td class="text-muted">Yesterday</td>
+            </tr>
+            <tr class="clickable-row">
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">RD</div><div><div class="font-600">Ritu Desai</div><div class="text-muted text-sm">Delhi Electronics</div></div></div></td>
+              <td><span class="badge badge-purple">Other Sources</span></td>
+              <td><span class="badge badge-green">Order Confirmed</span></td>
+              <td>Priya S.</td>
+              <td class="font-600">₹3,20,000</td>
+              <td class="text-muted">2 days ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SCREEN: LEADS ══════════════ -->
+  <div class="screen" id="screen-leads">
+    <div class="flex justify-between items-center" style="margin-bottom:16px">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px">Lead Management</div>
+        <div class="text-muted text-sm">248 total leads · 24 new this week</div>
+      </div>
+      <div class="flex gap-8">
+        <button class="btn btn-outline btn-sm">Export CSV</button>
+        <button class="btn btn-primary btn-sm">+ Add Lead</button>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-chip active">All (248)</span>
+      <span class="filter-chip">New (24)</span>
+      <span class="filter-chip">Interested (82)</span>
+      <span class="filter-chip">Follow-up (41)</span>
+      <span class="filter-chip">In Quotation (38)</span>
+      <span class="filter-chip">Negotiation (29)</span>
+      <span class="filter-chip">Rejected (18)</span>
+      <span class="filter-chip">Converted (16)</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">All Leads</span>
+        <div class="flex gap-8">
+          <select class="form-control btn-sm" style="width:auto;padding:6px 28px 6px 10px">
+            <option>All Sources</option>
+            <option>IndiaMart</option>
+            <option>Reference</option>
+            <option>Cold Calling</option>
+            <option>Other Sources</option>
+          </select>
+          <select class="form-control btn-sm" style="width:auto;padding:6px 28px 6px 10px">
+            <option>All Stages</option>
+            <option>Lead Calling</option>
+            <option>Visit/Enquiry</option>
+            <option>Quotation</option>
+            <option>Negotiation</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Customer</th><th>Source</th><th>Contact</th><th>Stage</th><th>Status</th><th>Assigned To</th><th>Value</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr class="clickable-row" onclick="showScreen('leaddetail',null)">
+              <td class="text-muted">L-001</td>
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#667eea,#764ba2)">AK</div><div><div class="font-600">Ajay Kumar</div><div class="text-muted text-sm">Rajasthan Textiles</div></div></div></td>
+              <td><span class="badge badge-blue">IndiaMart</span></td>
+              <td><div class="text-sm">+91 98765 43210</div><div class="text-muted text-sm">ajay@rtextiles.com</div></td>
+              <td><span class="badge badge-purple">Negotiation</span></td>
+              <td><span class="badge badge-green">Interested</span></td>
+              <td>Priya S.</td>
+              <td class="font-600">₹2,40,000</td>
+              <td><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();showScreen('leaddetail',null)">View</button></td>
+            </tr>
+            <tr class="clickable-row" onclick="showScreen('leaddetail',null)">
+              <td class="text-muted">L-002</td>
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#f093fb,#f5576c)">SM</div><div><div class="font-600">Sunita Mehta</div><div class="text-muted text-sm">Gujarat Pharma</div></div></div></td>
+              <td><span class="badge badge-green">Reference</span></td>
+              <td><div class="text-sm">+91 87654 32109</div><div class="text-muted text-sm">sunita@gujpharma.com</div></td>
+              <td><span class="badge badge-amber">Quotation</span></td>
+              <td><span class="badge badge-amber">Follow-up</span></td>
+              <td>Rahul K.</td>
+              <td class="font-600">₹1,80,000</td>
+              <td><button class="btn btn-outline btn-sm">View</button></td>
+            </tr>
+            <tr class="clickable-row">
+              <td class="text-muted">L-003</td>
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">VP</div><div><div class="font-600">Vijay Patil</div><div class="text-muted text-sm">Maharashtra Steel</div></div></div></td>
+              <td><span class="badge badge-amber">Cold Calling</span></td>
+              <td><div class="text-sm">+91 76543 21098</div><div class="text-muted text-sm">v.patil@msteel.in</div></td>
+              <td><span class="badge badge-teal">PI Sent</span></td>
+              <td><span class="badge badge-green">Interested</span></td>
+              <td>Anita M.</td>
+              <td class="font-600">₹5,60,000</td>
+              <td><button class="btn btn-outline btn-sm">View</button></td>
+            </tr>
+            <tr class="clickable-row">
+              <td class="text-muted">L-004</td>
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">RD</div><div><div class="font-600">Ritu Desai</div><div class="text-muted text-sm">Delhi Electronics</div></div></div></td>
+              <td><span class="badge badge-purple">Other Sources</span></td>
+              <td><div class="text-sm">+91 65432 10987</div><div class="text-muted text-sm">ritu@delhielec.com</div></td>
+              <td><span class="badge badge-green">Order Confirmed</span></td>
+              <td><span class="badge badge-green">Interested</span></td>
+              <td>Priya S.</td>
+              <td class="font-600">₹3,20,000</td>
+              <td><button class="btn btn-outline btn-sm">View</button></td>
+            </tr>
+            <tr class="clickable-row">
+              <td class="text-muted">L-005</td>
+              <td><div class="flex items-center gap-8"><div class="avatar sm" style="background:linear-gradient(135deg,#fa709a,#fee140)">MJ</div><div><div class="font-600">Manish Joshi</div><div class="text-muted text-sm">UP Chemicals</div></div></div></td>
+              <td><span class="badge badge-blue">IndiaMart</span></td>
+              <td><div class="text-sm">+91 54321 09876</div><div class="text-muted text-sm">m.joshi@upchem.in</div></td>
+              <td><span class="badge badge-red">Rejected</span></td>
+              <td><span class="badge badge-red">Not Interested</span></td>
+              <td>Rahul K.</td>
+              <td class="font-600">—</td>
+              <td><button class="btn btn-outline btn-sm">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SCREEN: LEAD DETAIL ══════════════ -->
+  <div class="screen" id="screen-leaddetail">
+    <div class="flex items-center gap-12" style="margin-bottom:20px">
+      <button class="btn btn-outline btn-sm" onclick="showScreen('leads',document.querySelectorAll('.nav-item')[1])">← Back</button>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px">Lead Detail — Ajay Kumar</div>
+      <span class="badge badge-purple" style="margin-left:auto">Negotiation Stage</span>
+      <button class="btn btn-primary btn-sm">Update Stage</button>
+    </div>
+
+    <div class="detail-grid">
+      <!-- LEFT: Timeline -->
+      <div>
+        <div class="card" style="margin-bottom:16px">
+          <div class="card-header">
+            <span class="card-title">Activity Timeline</span>
+            <button class="btn btn-primary btn-sm">+ Log Activity</button>
+          </div>
+          <div class="p-16">
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-line"></div>
+                <div class="tl-dot" style="background:#EEF3FF;border-color:var(--primary)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.88 13 19.79 19.79 0 0 1 1.82 4.38 2 2 0 0 1 3.8 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                <div class="tl-content">
+                  <div class="tl-header"><span class="tl-title">Lead Calling Done</span><span class="tl-time">Today, 10:30 AM</span></div>
+                  <div class="tl-body">Initial call with Ajay Kumar. Interested in industrial cleaning products. Wants to see product catalog.</div>
+                  <div class="tl-comment"><div class="tc-label">Lead Source</div>IndiaMart — Lead ID #IM-48291</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-line"></div>
+                <div class="tl-dot" style="background:#F0FDFA;border-color:var(--teal)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+                <div class="tl-content">
+                  <div class="tl-header"><span class="tl-title">Visit / Site Enquiry</span><span class="tl-time">May 19, 02:00 PM</span></div>
+                  <div class="tl-body">Site visit conducted at Rajasthan Textiles, Jaipur. Discussed cleaning volume and requirements.</div>
+                  <div class="tl-comment"><div class="tc-label">Status Update</div><span class="badge badge-green" style="font-size:11px">Interested</span></div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-line"></div>
+                <div class="tl-dot" style="background:#ECFDF5;border-color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <div class="tl-content">
+                  <div class="tl-header"><span class="tl-title">Product Suggestion</span><span class="tl-time">May 19, 04:30 PM</span></div>
+                  <div class="tl-body">Suggested Industrial Degreaser Pro (20L) and Surface Cleaner XT for textile machinery.</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-line"></div>
+                <div class="tl-dot" style="background:#FFFBEB;border-color:var(--warning)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                <div class="tl-content">
+                  <div class="tl-header"><span class="tl-title">Quotation Sent</span><span class="tl-time">May 20, 11:00 AM</span></div>
+                  <div class="tl-body">Quotation Q-2024-0142 sent via email. Validity: 15 days.</div>
+                  <div class="tl-comment">
+                    <div class="tc-label">Quotation Comment (Mandatory)</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;margin-top:4px">
+                      <div><span class="text-muted text-sm">Customer Req:</span> Industrial cleaning × 50 units/month</div>
+                      <div><span class="text-muted text-sm">Product:</span> Degreaser Pro 20L + Surface XT</div>
+                      <div><span class="text-muted text-sm">Value:</span> ₹2,40,000</div>
+                      <div><span class="text-muted text-sm">Validity:</span> 15 days</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot" style="background:#F5F3FF;border-color:var(--purple)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div class="tl-content">
+                  <div class="tl-header"><span class="tl-title">Negotiation In Progress</span><span class="tl-time">Today, 09:00 AM</span></div>
+                  <div class="tl-body">Customer requested 5% discount on bulk order. Under review.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Info panels -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <!-- Customer Info -->
+        <div class="card">
+          <div class="card-header"><span class="card-title">Customer Info</span><button class="btn btn-outline btn-sm">Edit</button></div>
+          <div class="p-16">
+            <div class="flex items-center gap-12" style="margin-bottom:14px">
+              <div class="avatar lg" style="background:linear-gradient(135deg,#667eea,#764ba2)">AK</div>
+              <div>
+                <div style="font-weight:700;font-size:15px">Ajay Kumar</div>
+                <div class="text-muted text-sm">Purchase Manager · Rajasthan Textiles</div>
+                <span class="badge badge-blue" style="margin-top:4px">IndiaMart</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div class="flex gap-8 text-sm"><span class="text-muted" style="width:70px">Phone</span><span class="font-600">+91 98765 43210</span></div>
+              <div class="flex gap-8 text-sm"><span class="text-muted" style="width:70px">Email</span><span class="font-600">ajay@rtextiles.com</span></div>
+              <div class="flex gap-8 text-sm"><span class="text-muted" style="width:70px">City</span><span>Jaipur, Rajasthan</span></div>
+              <div class="flex gap-8 text-sm"><span class="text-muted" style="width:70px">Assigned</span><span>Priya Sharma</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Stage -->
+        <div class="card">
+          <div class="card-header"><span class="card-title">Update Stage</span></div>
+          <div class="p-16">
+            <div class="form-group" style="margin-bottom:10px">
+              <label>Current Stage</label>
+              <select class="form-control">
+                <option>Lead Calling</option>
+                <option>Visit / Enquiry</option>
+                <option>Product Suggestion</option>
+                <option selected>Quotation</option>
+                <option>Negotiation</option>
+                <option>PI</option>
+                <option>Payment & T&C</option>
+                <option>Order Confirmation</option>
+                <option>Dispatch</option>
+                <option>Payment Reminder</option>
+                <option>Next Order Reminder</option>
+                <option>Repeat Order</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:10px">
+              <label>Status</label>
+              <select class="form-control">
+                <option>Interested</option>
+                <option>Not Interested</option>
+                <option>Follow-up</option>
+              </select>
+            </div>
+            <div class="mandatory-box">
+              <div class="mb-title">⚠ Mandatory Comment</div>
+              <ul>
+                <li>Customer Requirement</li>
+                <li>Product / Solution</li>
+                <li>Quotation Value</li>
+                <li>Validity</li>
+                <li>Any Special Notes</li>
+              </ul>
+            </div>
+            <div class="form-group">
+              <label>Add Comment *</label>
+              <textarea class="form-control" rows="3" placeholder="Enter mandatory comment…" style="resize:vertical"></textarea>
+            </div>
+            <button class="btn btn-primary" style="width:100%;margin-top:10px;justify-content:center">Save & Update Stage</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SCREEN: PIPELINE ══════════════ -->
+  <div class="screen" id="screen-pipeline">
+    <div class="flex justify-between items-center" style="margin-bottom:16px">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px">Sales Pipeline</div>
+        <div class="text-muted text-sm">Drag-and-drop Kanban view</div>
+      </div>
+      <div class="flex gap-8">
+        <button class="btn btn-outline btn-sm">Filter</button>
+        <button class="btn btn-primary btn-sm">+ Add Lead</button>
+      </div>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-col">
+        <div class="pipe-head" style="background:#EEF3FF;color:var(--primary)">Lead Calling <span class="badge badge-blue">8</span></div>
+        <div class="pipe-body">
+          <div class="pipe-card" onclick="showScreen('leaddetail',null)">
+            <div class="pc-name">Arjun Nair</div><div class="pc-company">Kerala Spices</div>
+            <div style="margin-top:6px"><span class="badge badge-blue">IndiaMart</span></div>
+          </div>
+          <div class="pipe-card">
+            <div class="pc-name">Deepa Rao</div><div class="pc-company">Bangalore IT</div>
+            <div style="margin-top:6px"><span class="badge badge-green">Reference</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-head" style="background:#F0FDFA;color:var(--teal)">Visit/Enquiry <span class="badge badge-teal">5</span></div>
+        <div class="pipe-body">
+          <div class="pipe-card">
+            <div class="pc-name">Farhan Sheikh</div><div class="pc-company">Mumbai Trading</div>
+            <div class="pc-value">₹80,000</div>
+            <span class="badge badge-green" style="margin-top:4px">Interested</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-head" style="background:#FFFBEB;color:var(--warning)">Quotation <span class="badge badge-amber">9</span></div>
+        <div class="pipe-body">
+          <div class="pipe-card">
+            <div class="pc-name">Sunita Mehta</div><div class="pc-company">Gujarat Pharma</div>
+            <div class="pc-value">₹1,80,000</div>
+          </div>
+          <div class="pipe-card">
+            <div class="pc-name">Gopal Singh</div><div class="pc-company">Punjab Agro</div>
+            <div class="pc-value">₹95,000</div>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-head" style="background:#F5F3FF;color:var(--purple)">Negotiation <span class="badge badge-purple">6</span></div>
+        <div class="pipe-body">
+          <div class="pipe-card" onclick="showScreen('leaddetail',null)">
+            <div class="pc-name">Ajay Kumar</div><div class="pc-company">Rajasthan Textiles</div>
+            <div class="pc-value">₹2,40,000</div>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-head" style="background:#FDF2F8;color:var(--pink)">PI / Order <span class="badge badge-pink">4</span></div>
+        <div class="pipe-body">
+          <div class="pipe-card">
+            <div class="pc-name">Vijay Patil</div><div class="pc-company">Maha Steel</div>
+            <div class="pc-value">₹5,60,000</div>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-head" style="background:#ECFDF5;color:var(--success)">Dispatched <span class="badge badge-green">3</span></div>
+        <div class="pipe-body">
+          <div class="pipe-card">
+            <div class="pc-name">Ritu Desai</div><div class="pc-company">Delhi Electronics</div>
+            <div class="pc-value">₹3,20,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Pending & Trial Leads</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Lead</th><th>Stage</th><th>Type</th><th>Remark</th><th>Follow-up Date</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><div class="font-600">Ramesh Gupta</div><div class="text-muted text-sm">Hyderabad Textiles</div></td><td><span class="badge badge-amber">Pending</span></td><td>Trial Material</td><td>Waiting for observation report</td><td>May 25</td><td><button class="btn btn-outline btn-sm">Update</button></td></tr>
+            <tr><td><div class="font-600">Kavita Nambiar</div><div class="text-muted text-sm">Chennai Chemicals</div></td><td><span class="badge badge-teal">Trial Started</span></td><td>Trial</td><td>Dispatch done on May 18</td><td>May 28</td><td><button class="btn btn-outline btn-sm">Update</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SCREEN: QUOTATION ══════════════ -->
+  <div class="screen" id="screen-quotation">
+    <div class="flex justify-between items-center" style="margin-bottom:16px">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px">Quotation & Negotiation</div>
+        <div class="text-muted text-sm">Lead: Ajay Kumar · Rajasthan Textiles</div>
+      </div>
+      <div class="flex gap-8">
+        <span class="badge badge-purple" style="padding:7px 14px">Negotiation Stage</span>
+        <button class="btn btn-outline btn-sm">Preview PDF</button>
+        <button class="btn btn-primary btn-sm">Send Quotation</button>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <!-- Quotation Form -->
+      <div class="card">
+        <div class="card-header"><span class="card-title">Quotation Details — Q-2024-0142</span></div>
+        <div class="p-16">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Quotation Date</label>
+              <input type="date" class="form-control" value="2024-05-20"/>
+            </div>
+            <div class="form-group">
+              <label>Validity (Days)</label>
+              <input type="number" class="form-control" value="15" placeholder="15"/>
+            </div>
+            <div class="form-group">
+              <label>Customer Requirement</label>
+              <input class="form-control" value="Industrial cleaning × 50 units/mo"/>
+            </div>
+            <div class="form-group">
+              <label>Payment Terms</label>
+              <select class="form-control">
+                <option>50% Advance / 50% Against Dispatch</option>
+                <option>100% Advance</option>
+                <option>100% Against Dispatch</option>
+                <option>Credit (30 Days)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Product Table -->
+          <div class="section-title">Products</div>
+          <div class="table-wrap">
+            <table class="quote-table">
+              <thead><tr><th>#</th><th>Product</th><th>Qty</th><th>Unit Price (₹)</th><th>Total (₹)</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Industrial Degreaser Pro 20L</td><td>30</td><td>4,200</td><td class="font-600">1,26,000</td></tr>
+                <tr><td>2</td><td>Surface Cleaner XT 10L</td><td>40</td><td>2,100</td><td class="font-600">84,000</td></tr>
+                <tr><td>3</td><td>Safety Gloves (Box)</td><td>10</td><td>1,500</td><td class="font-600">15,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="quote-total">
+            <div>
+              <div class="text-muted text-sm">Subtotal</div>
+              <div style="font-size:13px">₹2,25,000</div>
+            </div>
+            <div>
+              <div class="text-muted text-sm">GST 18%</div>
+              <div style="font-size:13px">₹40,500</div>
+            </div>
+            <div>
+              <div class="text-muted text-sm">Discount</div>
+              <div style="font-size:13px;color:var(--success)">−₹25,500</div>
+            </div>
+            <div>
+              <div class="text-muted text-sm">Grand Total</div>
+              <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--primary)">₹2,40,000</div>
+            </div>
+          </div>
+
+          <div class="mandatory-box" style="margin-top:14px">
+            <div class="mb-title">⚠ Mandatory Comment — Quotation</div>
+            <ul>
+              <li>Customer Requirement: Industrial cleaning ×50 units/month</li>
+              <li>Product/Solution: Degreaser Pro + Surface XT</li>
+              <li>Quotation Value: ₹2,40,000</li>
+              <li>Validity: 15 days</li>
+            </ul>
+          </div>
+          <div class="form-group" style="margin-top:10px">
+            <label>Special Notes</label>
+            <textarea class="form-control" rows="2" placeholder="Add any special notes here…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Negotiation Panel -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Negotiation Tracker</span></div>
+          <div class="p-16">
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+              <div class="flex justify-between items-center" style="padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)">
+                <span class="text-sm font-600">Original Quote</span>
+                <span class="font-600" style="color:var(--text2)">₹2,65,500</span>
+              </div>
+              <div class="flex justify-between items-center" style="padding:10px 12px;background:#FFFBEB;border-radius:var(--radius-sm);border:1px solid #FDE68A">
+                <span class="text-sm font-600">Customer Request</span>
+                <span class="font-600" style="color:var(--warning)">₹2,30,000 (−5%)</span>
+              </div>
+              <div class="flex justify-between items-center" style="padding:10px 12px;background:#ECFDF5;border-radius:var(--radius-sm);border:1px solid #A7F3D0">
+                <span class="text-sm font-600">Final Agreed</span>
+                <span class="font-600" style="color:var(--success)">₹2,40,000</span>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:10px">
+              <label>Negotiation Notes</label>
+              <textarea class="form-control" rows="3">Customer requested 5% discount on bulk order. Agreed to 9.6% discount on condition of 50% advance payment.</textarea>
+            </div>
+            <button class="btn btn-success" style="width:100%;justify-content:center">Approve & Generate PI</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Rejection (If Applicable)</span></div>
+          <div class="p-16">
+            <div class="form-group" style="margin-bottom:10px">
+              <label>Rejection Reason</label>
+              <select class="form-control">
+                <option value="">— Select if rejected —</option>
+                <option>Product Not Suitable</option>
+                <option>Price Issue</option>
+                <option>Requirement Change</option>
+                <option>Competitor</option>
+                <option>Other (Please Specify)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Rejection Comment</label>
+              <textarea class="form-control" rows="2" placeholder="Mandatory if rejected…"></textarea>
+            </div>
+            <button class="btn btn-danger btn-sm" style="margin-top:8px">Mark as Rejected</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SCREEN: DISPATCH ══════════════ -->
+  <div class="screen" id="screen-dispatch">
+    <div class="flex justify-between items-center" style="margin-bottom:16px">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px">Order & Dispatch</div>
+        <div class="text-muted text-sm">Lead: Vijay Patil · Maharashtra Steel · PI-2024-0089</div>
+      </div>
+      <div class="flex gap-8">
+        <span class="badge badge-teal" style="padding:7px 14px">Dispatch Stage</span>
+        <button class="btn btn-primary btn-sm">Mark Dispatched</button>
+      </div>
+    </div>
+
+    <!-- Stage Progress Steps -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="p-16">
+        <div class="dispatch-steps">
+          <div class="ds-step"><div class="ds-dot" style="background:var(--success)">✓</div><div class="ds-label">PI Sent</div></div>
+          <div class="ds-step"><div class="ds-dot" style="background:var(--success)">✓</div><div class="ds-label">Payment Terms</div></div>
+          <div class="ds-step"><div class="ds-dot" style="background:var(--success)">✓</div><div class="ds-label">Order Confirmed</div></div>
+          <div class="ds-step"><div class="ds-dot" style="background:var(--primary)">4</div><div class="ds-label" style="color:var(--primary);font-weight:700">Dispatch</div></div>
+          <div class="ds-step"><div class="ds-dot" style="background:var(--border);color:var(--text3)">5</div><div class="ds-label">Payment Remind</div></div>
+          <div class="ds-step"><div class="ds-dot" style="background:var(--border);color:var(--text3)">6</div><div class="ds-label">Next Order Reminder</div></div>
+          <div class="ds-step"><div class="ds-dot" style="background:var(--border);color:var(--text3)">7</div><div class="ds-label">Repeat Order</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <!-- Order Confirmation -->
+      <div class="card">
+        <div class="card-header"><span class="card-title">Order Confirmation Details</span></div>
+        <div class="p-16">
+          <div class="mandatory-box">
+            <div class="mb-title">⚠ Mandatory Comment — Order Confirmation</div>
+            <ul>
+              <li>Order Value: ₹5,60,000</li>
+              <li>Delivery Date: May 26, 2024</li>
+              <li>Delivery Address: Plot 14, MIDC, Pune</li>
+              <li>Payment Terms: 50% Advance done</li>
+            </ul>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Order Value (₹)</label>
+              <input class="form-control" value="5,60,000" readonly/>
+            </div>
+            <div class="form-group">
+              <label>Delivery Date</label>
+              <input type="date" class="form-control" value="2024-05-26"/>
+            </div>
+            <div class="form-group" style="grid-column:span 2">
+              <label>Delivery Address</label>
+              <input class="form-control" value="Plot 14, MIDC Industrial Area, Pune — 411019"/>
+            </div>
+            <div class="form-group">
+              <label>Payment Terms</label>
+              <select class="form-control">
+                <option selected>50% Advance / 50% Against Dispatch</option>
+                <option>100% Advance</option>
+                <option>Credit (30 Days)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Transporter</label>
+              <input class="form-control" placeholder="Enter transporter name"/>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:4px">
+            <label>Special Notes</label>
+            <textarea class="form-control" rows="2" placeholder="Any dispatch notes…"></textarea>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:12px;justify-content:center">Confirm Dispatch</button>
+        </div>
+      </div>
+
+      <!-- Payment Reminder + Next Order -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Payment Reminder</span></div>
+          <div class="p-16">
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+              <div class="flex justify-between text-sm"><span class="text-muted">Order Value</span><span class="font-600">₹5,60,000</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">Advance Received</span><span class="font-600" style="color:var(--success)">₹2,80,000 (50%)</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">Balance Due</span><span class="font-600" style="color:var(--danger)">₹2,80,000</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">Due Date</span><span class="font-600">May 26, 2024</span></div>
+            </div>
+            <div class="form-group">
+              <label>Reminder Note</label>
+              <textarea class="form-control" rows="2" placeholder="Message to customer…"></textarea>
+            </div>
+            <button class="btn btn-outline btn-sm" style="margin-top:8px">Send Reminder</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="card-title">Next Order Reminder</span></div>
+          <div class="p-16">
+            <div class="mandatory-box">
+              <div class="mb-title">⚠ Mandatory Comment</div>
+              <ul>
+                <li>Last Order Date</li>
+                <li>Next Order Due Date</li>
+                <li>Suggested Products</li>
+                <li>Special Offer / Discount</li>
+                <li>Any Special Notes</li>
+              </ul>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Last Order Date</label>
+                <input type="date" class="form-control" value="2024-05-20"/>
+              </div>
+              <div class="form-group">
+                <label>Next Due Date</label>
+                <input type="date" class="form-control" value="2024-06-20"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Suggested Products</label>
+              <input class="form-control" placeholder="e.g. Degreaser Pro, Rust Remover X"/>
+            </div>
+            <div class="form-group" style="margin-top:8px">
+              <label>Special Offer / Discount</label>
+              <input class="form-control" placeholder="e.g. 5% on next reorder within 30 days"/>
+            </div>
+            <button class="btn btn-success btn-sm" style="margin-top:10px;width:100%;justify-content:center">Set Reminder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- end content -->
+</main>
+
+<script>
+const titles = {
+  dashboard: ['Dashboard','Overview'],
+  leads: ['Lead','Management'],
+  leaddetail: ['Lead Detail','Ajay Kumar'],
+  pipeline: ['Sales','Pipeline'],
+  quotation: ['Quotation &','Negotiation'],
+  dispatch: ['Order &','Dispatch']
+};
+
+function showScreen(id, navEl) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('screen-'+id);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(navEl) navEl.classList.add('active');
+  const t = titles[id]||['LeadFlow','CRM'];
+  document.getElementById('topbar-title').innerHTML = t[0]+' <span>'+t[1]+'</span>';
+  document.querySelector('.content').scrollTop = 0;
+}
+</script>
+</body>
+</html>
