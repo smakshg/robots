@@ -1,15 +1,84 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #050505;
+  background-color: #020408;
+  color: #c8d6e5;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ═══ Animated circuit board & robotic background ═══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    /* Robotic HUD Graphic Overlay */
+    url('./robotic_bg.png'),
+    /* Circuit nodes */
+    radial-gradient(circle 2px at 60px 60px, rgba(0, 255, 180, 0.12) 0%, transparent 2px),
+    radial-gradient(circle 2px at 120px 180px, rgba(0, 200, 255, 0.08) 0%, transparent 2px),
+    radial-gradient(circle 1.5px at 300px 90px, rgba(0, 255, 180, 0.10) 0%, transparent 2px),
+    radial-gradient(circle 1.5px at 420px 240px, rgba(0, 200, 255, 0.06) 0%, transparent 2px),
+    /* Grid lines */
+    linear-gradient(rgba(0, 255, 180, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 180, 0.025) 1px, transparent 1px),
+    /* Sub-grid */
+    linear-gradient(rgba(0, 200, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 200, 255, 0.012) 1px, transparent 1px);
+  background-size:
+    cover,
+    480px 300px,
+    480px 300px,
+    480px 300px,
+    480px 300px,
+    80px 80px,
+    80px 80px,
+    20px 20px,
+    20px 20px;
+  background-position: center, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: no-repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat;
+  background-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+/* ═══ Loading spinner ═══ */
+.loading-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(0, 255, 180, 0.1);
+  border-top-color: #00ffb4;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ═══ Selection ═══ */
+::selection {
+  background: rgba(0, 255, 180, 0.25);
   color: #fff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ═══ Scrollbar ═══ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: rgba(0,20,10,0.5); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(0,255,180,0.2), rgba(0,200,255,0.2));
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0,255,180,0.4), rgba(0,200,255,0.4));
 }
